@@ -1,0 +1,8 @@
+ <nb-card>
+      <nb-card-header>Confirm Delete</nb-card-header>
+      <nb-card-body>Are you sure you want to delete this student?</nb-card-body>
+      <nb-card-footer class="d-flex justify-content-end gap-2">
+        <button nbButton status="danger" (click)="confirm(true)">Delete</button>
+        <button nbButton status="basic" (click)="confirm(false)">Cancel</button>
+      </nb-card-footer>
+</nb-card>

@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header>Add Student</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Full name</label>
+        <input nbInput fullWidth placeholder="Full name" formControlName="fullName" />
+        <div *ngIf="f.fullName.touched && f.fullName.invalid" class="text-danger small mt-1">
+          <div *ngIf="f.fullName.errors?.['required']">Full name is required.</div>
+          <div *ngIf="f.fullName.errors?.['maxlength']">Maximum 100 characters allowed.</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input nbInput fullWidth placeholder="Email" formControlName="email" type="email" />
+        <div *ngIf="f.email.touched && f.email.invalid" class="text-danger small mt-1">
+          <div *ngIf="f.email.errors?.['required']">Email is required.</div>
+          <div *ngIf="f.email.errors?.['email'] || f.email.errors?.['pattern']">Invalid email format.</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Date of birth</label>
+        <!-- Using native date input for simplicity -->
+        <input nbInput fullWidth formControlName="dateOfBirth" type="date" />
+        <div *ngIf="f.dateOfBirth.touched && f.dateOfBirth.invalid" class="text-danger small mt-1">
+          <div *ngIf="f.dateOfBirth.errors?.['required']">Date of birth is required.</div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button nbButton status="primary" [disabled]="submitting" type="submit">
+          {{ submitting ? 'Saving...' : 'Add Student' }}
+        </button>
+
+        <button nbButton status="basic" routerLink="/students" type="button">Cancel</button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
