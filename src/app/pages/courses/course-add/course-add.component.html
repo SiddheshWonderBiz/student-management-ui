@@ -1,0 +1,71 @@
+<nb-card>
+  <nb-card-header>Add Course</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Course Name -->
+      <div class="mb-3">
+        <label class="form-label">Course Name</label>
+        <input
+          nbInput
+          fullWidth
+          placeholder="Enter course name"
+          formControlName="courseName"
+          maxlength="50"
+        />
+        <div
+          *ngIf="f.courseName.touched && f.courseName.invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="f.courseName.errors?.['required']">
+            Course name is required.
+          </div>
+          <div *ngIf="f.courseName.errors?.['minlength']">
+            Minimum 3 characters required.
+          </div>
+          <div *ngIf="f.courseName.errors?.['maxlength']">
+            Maximum 50 characters allowed.
+          </div>
+          <div *ngIf="f.courseName.errors?.['pattern']">
+            Only letters, numbers, and spaces allowed.
+          </div>
+        </div>
+      </div>
+
+      <!-- Credits -->
+      <div class="mb-3">
+        <label class="form-label">Credits</label>
+        <input
+          nbInput
+          fullWidth
+          placeholder="Enter credits"
+          formControlName="credits"
+          type="number"
+          min="1"
+          max="10"
+        />
+        <div
+          *ngIf="f.credits.touched && f.credits.invalid"
+          class="text-danger small mt-1"
+        >
+          <div *ngIf="f.credits.errors?.['required']">Credits are required.</div>
+          <div *ngIf="f.credits.errors?.['min']">Minimum 1 credit required.</div>
+          <div *ngIf="f.credits.errors?.['max']">Maximum 10 credits allowed.</div>
+          <div *ngIf="f.credits.errors?.['pattern']">
+            Only numeric values allowed.
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex gap-2">
+        <button nbButton status="primary" [disabled]="submitting" type="submit">
+          {{ submitting ? 'Saving...' : 'Add Course' }}
+        </button>
+
+        <button nbButton status="basic" routerLink="/courses" type="button">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

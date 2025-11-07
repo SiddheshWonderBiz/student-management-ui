@@ -4,10 +4,12 @@
     <form [formGroup]="studentForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="mb-3">
         <label class="form-label">Full name</label>
-        <input nbInput fullWidth placeholder="Full name" formControlName="fullName" />
+        <input nbInput fullWidth placeholder="Full name" formControlName="fullName" maxlength="100" />
         <div *ngIf="f.fullName.touched && f.fullName.invalid" class="text-danger small mt-1">
           <div *ngIf="f.fullName.errors?.['required']">Full name is required.</div>
           <div *ngIf="f.fullName.errors?.['maxlength']">Maximum 100 characters allowed.</div>
+          <div *ngIf ="f.fullName.errors?.['minlength']">Minimum 3 characters required.</div>
+          <div *ngIf ="f.fullName.errors?.['pattern']">Only characters allowed</div>
         </div>
       </div>
 

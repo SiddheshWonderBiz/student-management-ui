@@ -23,6 +23,24 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/students/edit-student/edit-student.component')
         .then(m => m.EditStudentComponent),
+  },
+  {
+    path: 'courses',
+    loadComponent: () =>
+      import('./pages/courses/course-list/course-list.component')
+        .then(m => m.CourseListComponent),
+  },
+  {
+    path : 'courses/add',
+    loadComponent: () =>
+      import('./pages/courses/course-add/course-add.component')
+        .then(m => m.CourseAddComponent),
+  },
+  {
+    path : 'courses/edit/:id',
+    loadComponent: () =>
+      import('./pages/courses/course-edit/course-edit.component')
+        .then(m => m.CourseEditComponent),
   }
   
 ];

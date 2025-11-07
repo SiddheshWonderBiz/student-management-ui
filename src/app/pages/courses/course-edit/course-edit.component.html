@@ -1,0 +1,71 @@
+<nb-card accent="info" class="edit-card">
+  <nb-card-header>Edit Course</nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <!-- Course Name -->
+      <div class="form-group mb-3">
+        <label>Course Name</label>
+        <input
+          nbInput
+          fullWidth
+          formControlName="courseName"
+          placeholder="Enter course name"
+          maxlength="50"
+        />
+        <div *ngIf="submitting && f['courseName'].errors" class="error">
+          <small *ngIf="f['courseName'].errors['required']">
+            Course name is required.
+          </small>
+          <small *ngIf="f['courseName'].errors['minlength']">
+            Minimum 3 characters required.
+          </small>
+          <small *ngIf="f['courseName'].errors['maxlength']">
+            Maximum 50 characters allowed.
+          </small>
+          <small *ngIf="f['courseName'].errors['pattern']">
+            Only letters, numbers, and spaces allowed.
+          </small>
+        </div>
+      </div>
+
+      <!-- Credits -->
+      <div class="form-group mb-3">
+        <label>Credits</label>
+        <input
+          nbInput
+          fullWidth
+          type="number"
+          min="1"
+          max="10"
+          formControlName="credits"
+          placeholder="Enter credits"
+        />
+        <div *ngIf="submitting && f['credits'].errors" class="error">
+          <small *ngIf="f['credits'].errors['required']">
+            Credits are required.
+          </small>
+          <small *ngIf="f['credits'].errors['min']">
+            Minimum 1 credit required.
+          </small>
+          <small *ngIf="f['credits'].errors['max']">
+            Maximum 10 credits allowed.
+          </small>
+          <small *ngIf="f['credits'].errors['pattern']">
+            Only numeric values allowed.
+          </small>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-end gap-2">
+        <button nbButton status="primary" [disabled]="courseForm.invalid">
+          Update
+        </button>
+        <button nbButton status="basic" type="button" (click)="cancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

@@ -39,7 +39,7 @@ export class AddStudentComponent implements OnInit {
     this.studentForm = this.fb.group({
       fullName: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(100)],
+        [Validators.required, Validators.minLength(3), Validators.maxLength(100),Validators.pattern(/^[a-zA-Z\s]+$/)],
       ],
       email: [
         '',

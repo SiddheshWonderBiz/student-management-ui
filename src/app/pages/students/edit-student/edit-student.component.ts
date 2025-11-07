@@ -27,7 +27,7 @@ export class EditStudentComponent {
   ngOnInit(): void {
     this.studentId = Number(this.route.snapshot.paramMap.get('id'));
     this.studentForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100),Validators.pattern(/^[a-zA-Z\s]+$/),Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
       dateOfBirth: ['', [Validators.required]],
     });

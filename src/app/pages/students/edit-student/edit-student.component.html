@@ -10,6 +10,7 @@
           fullWidth
           formControlName="fullName"
           placeholder="Enter full name"
+          maxlength="100"
         />
         <div *ngIf="submitting && f['fullName'].errors" class="error">
           <small *ngIf="f['fullName'].errors['required']"
@@ -17,6 +18,12 @@
           >
           <small *ngIf="f['fullName'].errors['maxlength']"
             >Maximum 100 characters allowed.</small
+          >
+          <small *ngIf="f['fullName'].errors['minlength']"
+            >Minimum 3 characters required.</small
+          >
+          <small *ngIf="f['fullName'].errors['pattern']"
+            >Only characters allowed.</small
           >
         </div>
       </div>

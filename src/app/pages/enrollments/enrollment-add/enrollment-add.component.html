@@ -1,0 +1,67 @@
+<nb-card accent="info" class="add-enrollment-card">
+  <nb-card-header>
+    <h2>Add Enrollment</h2>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+
+      <!-- Student -->
+      <div class="form-group mb-3">
+        <label>Student</label>
+        <nb-select
+          placeholder="Select student"
+          formControlName="studentId"
+          fullWidth
+        >
+          <nb-option *ngFor="let s of students" [value]="s.id">
+            {{ s.fullName }}
+          </nb-option>
+        </nb-select>
+        <div class="text-danger" *ngIf="enrollmentForm.get('studentId')?.touched && enrollmentForm.get('studentId')?.invalid">
+          Student is required.
+        </div>
+      </div>
+
+      <!-- Course -->
+      <div class="form-group mb-3">
+        <label>Course</label>
+        <nb-select
+          placeholder="Select course"
+          formControlName="courseId"
+          fullWidth
+        >
+          <nb-option *ngFor="let c of courses" [value]="c.courseId">
+            {{ c.courseName }}
+          </nb-option>
+        </nb-select>
+        <div class="text-danger" *ngIf="enrollmentForm.get('courseId')?.touched && enrollmentForm.get('courseId')?.invalid">
+          Course is required.
+        </div>
+      </div>
+
+      <!-- Grade -->
+      <div class="form-group mb-3">
+        <label>Grade</label>
+        <input
+          nbInput
+          type="number"
+          formControlName="grade"
+          placeholder="Enter grade (0 - 100)"
+          fullWidth
+        />
+        <div class="text-danger" *ngIf="enrollmentForm.get('grade')?.touched && enrollmentForm.get('grade')?.invalid">
+          Grade must be between 0 and 100.
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-end">
+        <button nbButton status="primary" type="submit">Submit</button>
+        <button nbButton status="basic" routerLink="/enrollments" class="ms-2">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

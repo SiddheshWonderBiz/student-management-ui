@@ -28,13 +28,5 @@ export class ApiService {
     return this.http.put<any>(`${this.apiUrl}/Students/${id}`, student);
   }
 
-  //course endpoints
-  getCourses():Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/Courses`);
-  }
 
-  //enrollment endpoints
-  getEnrollments():Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/Enrollments`);
-  }
 }
